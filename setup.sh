@@ -80,7 +80,7 @@ while IFS= read -r line; do
         fi
     else
         # Echo the command for dry run
-        echo "GIT_SSH_COMMAND=\"ssh -i $TXSETUP_ROOT/etc/id_rsa_dkey_$repo_name.dec -p $port\" git clone \"$repo_url\" \"$clone_path\""
+        echo "GIT_SSH_COMMAND=\"ssh -i $TXSETUP_ROOT/etc/id_rsa_dkey_$repo_name.dec -p $port\" git clone \"$repo_url\" \"$clone_path\" (dry-run, -force to force)"
     fi
 done <<< "$(echo "$json" | grep -o '{[^}]*}')"
 
