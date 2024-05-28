@@ -1,6 +1,13 @@
 #!/bin/bash
 
 TXSETUP_ROOT=$(pwd)
+if [ ! -d "$TXSETUP_ROOT/etc" ]; then
+    echo "Error: $TXSETUP_ROOT/etc not found."
+    echo "Make sure you are running this script from inside ./txsetup folder"
+    exit 1
+fi
+
+source $TXSETUP_ROOT/etc/lsgetopt.sh
 
 # Check if dev directory exists, if not, create it
 if [ ! -d "$HOME/dev" ]; then
@@ -8,25 +15,78 @@ if [ ! -d "$HOME/dev" ]; then
     echo "Created $HOME/dev"
 fi
 
+# Function to extract value from JSON
+# Usage: extract_value <json_string> <key>
+extract_value() {
+    local json="$1"
+    local key="$2"
+
+    # Use grep to find the line containing the key and value
+    # Then use sed to extract the value
+    local value=$(echo "$json" | grep -o "\"$key\":\s*\"[^\"]*\"" | sed 's/.*: "\(.*\)"/\1/')
+
+    echo "$value"
+}
+
 # Clone repositories with error checking and progress messages
 clone_repo() {
     local repo_name="$1"
     local repo_url="$2"
     local clone_path="$3"
+    local port="$4"
 
     echo "Cloning $repo_name repository..."
 
-    GIT_SSH_COMMAND="ssh -i $TXSETUP_ROOT/etc/id_rsa_dkey_$repo_name.enc" git clone "$repo_url" "$clone_path" || { echo "Error: Cloning $repo_name repository failed"; exit 1; }
+    if [ -n "${force+x}" ]; then
+        if ! GIT_SSH_COMMAND="ssh -i $TXSETUP_ROOT/etc/id_rsa_dkey_$repo_name.dec -p $port" git clone "$repo_url" "$clone_path"; then
+            echo "Error: Cloning $repo_name repository failed"
+            return 1
+        fi
+    else
+        echo "GIT_SSH_COMMAND=\"ssh -i $TXSETUP_ROOT/etc/id_rsa_dkey_$repo_name.dec -p $port\" git clone \"$repo_url\" \"$clone_path\" (dry-run, use -force to force)"
+    fi
 
     echo "Cloned $repo_name repository successfully"
 }
 
+# Check if etc/repo_config.dec exists
+if [ ! -f "$TXSETUP_ROOT/etc/repo_config.dec" ]; then
+    echo "Error: $TXSETUP_ROOT/etc/repo_config.dec file not found."
+    exit 1
+fi
+
+# Read JSON from etc/repo_config.dec file
+json=$(<"$TXSETUP_ROOT/etc/repo_config.dec" tr -d '\r\n')
+
 cd "$HOME/dev" || { echo "Error: Unable to change directory to $HOME/dev"; exit 1; }
 
-clone_repo "txdata" "git@github.com:taboxdev/txdata.git" "./txdata"
-clone_repo "txmodels" "git@github.com:taboxdev/txmodels.git" "./txmodels"
-clone_repo "fdata" "git@github.com:taboxdev/fdata.git" "../fdata"
-clone_repo "tabox" "git@tabox.de:mkatlihan/tabox.git" "./c/tabox/trunk"
+# Loop through each JSON object
+while IFS= read -r line; do
+    # Extract values from current JSON object
+    repo_name=$(extract_value "$line" "name")
+    repo_url=$(extract_value "$line" "url")
+    clone_path=$(extract_value "$line" "path")
+    port=$(extract_value "$line" "port")
+
+    # Check if any value is missing
+    if [[ -z $repo_name || -z $repo_url || -z $clone_path || -z $port ]]; then
+        echo "Error: Missing key or value in JSON record."
+        continue
+    fi
+
+    # Check if forced run or dry run
+    if [ -n "${force+x}" ]; then
+        # Perform the action
+        echo "Cloning repository: $repo_name"
+        if ! GIT_SSH_COMMAND="ssh -i $TXSETUP_ROOT/etc/id_rsa_dkey_$repo_name.dec -p $port" git clone "$repo_url" "$clone_path"; then
+            echo "Error: Cloning $repo_name repository failed"
+            exit 1
+        fi
+    else
+        # Echo the command for dry run
+        echo "GIT_SSH_COMMAND=\"ssh -i $TXSETUP_ROOT/etc/id_rsa_dkey_$repo_name.dec -p $port\" git clone \"$repo_url\" \"$clone_path\""
+    fi
+done <<< "$(echo "$json" | grep -o '{[^}]*}')"
 
 cd "$TXSETUP_ROOT" || { echo "Error: Unable to change directory to $TXSETUP_ROOT"; exit 1; }
 
