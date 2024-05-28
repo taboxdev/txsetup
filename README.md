@@ -13,6 +13,7 @@ TXSetup is a project designed to simplify the setup process by securely managing
 	¦ +-- id_ed25519_dkey_fdata.enc
 	¦ +-- id_ed25519_dkey_txsetup.enc
 	¦ +-- id_rsa_dkey_txdata.enc
+	¦ +-- id_rsa_dkey_txmodels.enc
 	+-- txdecfile.sh
 	+-- txencfile.sh
 
