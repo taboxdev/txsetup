@@ -46,20 +46,27 @@ else
 	echo Edit $BOTTLES and populate
 	exit 1
 fi
-if [ "$FN" = "config" ]; then
+if [ -n "${django+x}" ]; then
 	PASS=" -k $DJANGO_CONFIG"
-	echo Decrypting DJANGO_CONFIG
-else
+	echo Decrypting with DJANGO_CONFIG
+elif [ -n "${import+x}" ]; then
 	PASS=" -k $IMPORT_CONFIG"
-	echo Decrypting IMPORT_CONFIG
+	echo Decrypting with IMPORT_CONFIG
+elif [ -n "${apitoken+x}" ]; then
+	PASS=" -k $api_token"
+	echo Decrypting with api_token
+elif [ -n "${reqpass+x}" ]; then
+	PASS=" -k $requirepass"
+	echo Decrypting with requirepass	
+else
+	PASS=" -k $api_token"
+	echo Decrypting with api_token
 fi
 if [ "$EX" = "enc" ]; then
 	echo "REMARK: Using passwds stored in .bottles"
 	openssl aes-256-cbc -d -a -in $F1 -out $FP.dec $PASS -pbkdf2
 	if [ $? -eq 0 ]; then
-		echo Written $FP.dec, backing up and writing new JSON...
-		cp -v $FP.json $FP.json.bak
-		mv -v $FP.dec $FP.json
+		echo Written $FP.dec
 	else
 		echo Error: dec operation failed.
 	fi	

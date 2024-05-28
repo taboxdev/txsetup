@@ -2,7 +2,7 @@
 F1=$1
 if [ "$F1" = "" ]; then
 	echo Encrypt a file
-	echo "Usage: txencfile.sh </path/to/filename>"
+	echo "Usage: txencfile.sh </path/to/filename> [options]"
 	exit
 fi
 if [ ! -f $F1 ]; then
@@ -21,6 +21,8 @@ then
     echo "'openssl' could not be found"
     exit
 fi
+
+source etc/lsgetopt.sh
 
 FN=$(basename -- "$F1")
 EX="${FN##*.}"
@@ -47,12 +49,21 @@ else
 	echo Edit $BOTTLES and populate
 	exit 1
 fi		
-if [ "$FN" = "config" ]; then
+if [ -n "${django+x}" ]; then
 	PASS=" -k $DJANGO_CONFIG"
-	echo Encrypting DJANGO_CONFIG
-else
+	echo Encrypting with DJANGO_CONFIG
+elif [ -n "${import+x}" ]; then
 	PASS=" -k $IMPORT_CONFIG"
-	echo Encrypting IMPORT_CONFIG
+	echo Encrypting with IMPORT_CONFIG
+elif [ -n "${apitoken+x}" ]; then
+	PASS=" -k $api_token"
+	echo Encrypting with api_token
+elif [ -n "${reqpass+x}" ]; then
+	PASS=" -k $requirepass"
+	echo Encrypting with requirepass	
+else
+	PASS=" -k $api_token"
+	echo Encrypting with api_token
 fi
 echo "REMARK: Using passwds stored in .bottles"
 openssl aes-256-cbc -a -salt -in $F1 -out $FP.enc $PASS -pbkdf2
