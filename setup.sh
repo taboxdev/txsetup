@@ -28,26 +28,22 @@ extract_value() {
     echo "$value"
 }
 
-# Clone repositories with error checking and progress messages
-clone_repo() {
-    local repo_name="$1"
-    local repo_url="$2"
-    local clone_path="$3"
-    local port="$4"
+files=(
+    etc/id_rsa_dkey_fdata.enc
+    etc/id_rsa_dkey_fdata.enc
+    etc/id_rsa_dkey_txdata.enc
+    etc/id_rsa_dkey_txmodels.enc
+    etc/id_rsa_dkey_tabox.enc
+    etc/repo_config.enc
+)
 
-    echo "Cloning $repo_name repository..."
-
-    if [ -n "${force+x}" ]; then
-        if ! GIT_SSH_COMMAND="ssh -i $TXSETUP_ROOT/etc/id_rsa_dkey_$repo_name.dec -p $port" git clone "$repo_url" "$clone_path"; then
-            echo "Error: Cloning $repo_name repository failed"
-            return 1
-        fi
-    else
-        echo "GIT_SSH_COMMAND=\"ssh -i $TXSETUP_ROOT/etc/id_rsa_dkey_$repo_name.dec -p $port\" git clone \"$repo_url\" \"$clone_path\" (dry-run, use -force to force)"
+for file in "${files[@]}"; do
+    if ! ./txdecfile.sh "$file"; then
+        echo "Error: Failed to decrypt $file"
+        exit 1
     fi
+done
 
-    echo "Cloned $repo_name repository successfully"
-}
 
 # Check if etc/repo_config.dec exists
 if [ ! -f "$TXSETUP_ROOT/etc/repo_config.dec" ]; then
