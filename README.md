@@ -32,7 +32,7 @@ TXSetup is a project designed to simplify the setup process by securely managing
 
 ### Windows
 - **Git-for-Windows** [Git-2.45.1-64-bit.exe](https://github.com/git-for-windows/git/releases/download/v2.45.1.windows.1/Git-2.45.1-64-bit.exe)
-- For other versions, visit [https://gitforwindows.org](https://gitforwindows.org)
+- For other `Git-for-Windows` versions, visit [https://gitforwindows.org](https://gitforwindows.org)
 
 
 ## Setup Instructions
