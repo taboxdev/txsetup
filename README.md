@@ -6,17 +6,17 @@ TXSetup is a project designed to simplify the setup process by securely managing
 
 ## File Structure
 
-txsetup/
-+-- .git/
-+-- .gitignore
-+-- README.md
-+-- etc/
-¦ +-- .bottles.template
-¦ +-- id_ed25519_dkey_fdata.enc
-¦ +-- id_ed25519_dkey_txsetup.enc
-¦ +-- id_rsa_dkey_txdata.enc
-+-- txdecfile.sh
-+-- txencfile.sh
+	txsetup/
+	+-- .git/
+	+-- .gitignore
+	+-- README.md
+	+-- etc/
+	¦ +-- .bottles.template
+	¦ +-- id_ed25519_dkey_fdata.enc
+	¦ +-- id_ed25519_dkey_txsetup.enc
+	¦ +-- id_rsa_dkey_txdata.enc
+	+-- txdecfile.sh
+	+-- txencfile.sh
 
 
 - **etc/**: Contains encrypted deploy keys for private repositories.
