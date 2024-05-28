@@ -7,8 +7,6 @@ TXSetup is a project designed to simplify the setup process by securely managing
 ## File Structure
 
 	txsetup/
-	+-- .git/
-	+-- .gitignore
 	+-- README.md
 	+-- etc/
 	¦ +-- .bottles.template
