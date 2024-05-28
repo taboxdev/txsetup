@@ -24,15 +24,22 @@ TXSetup is a project designed to simplify the setup process by securely managing
 
 ## Prerequisites
 
+### Linux/MacOS
+
 - **OpenSSL**: Required for encryption and decryption of deploy keys.
 - **Git**: For cloning repositories.
 - **SSH**: To manage SSH keys and clone repositories.
 
+### Windows
+- **Git-for-Windows** [Git-2.45.1-64-bit.exe](https://github.com/git-for-windows/git/releases/download/v2.45.1.windows.1/Git-2.45.1-64-bit.exe)
+- For other versions, visit [https://gitforwindows.org](https://gitforwindows.org)
+
+
 ## Setup Instructions
 
-### Step 1: Edit `etc/.bottles` and update the `api_token` entry with the token provided to you via email
+- Step 1: Edit `etc/.bottles` and update the `api_token` entry with the token provided to you via email
 
-### Step 2: The `setup.sh` script automates set up TABOX environment on your computer.  Execute the setup script:
+- Step 2: The `setup.sh` script automates set up TABOX environment on your computer.  Execute the setup script:
 
    ```bash
    ./setup.sh
