@@ -1,0 +1,5 @@
+# Create .bottles from this file and fill (already gitignored)
+DJANGO_CONFIG=<pwd>
+IMPORT_CONFIG=<pwd>
+api_token=<string>
+requirepass=<string>
