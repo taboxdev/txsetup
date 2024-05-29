@@ -84,7 +84,8 @@ while IFS= read -r line; do
 			echo "GIT_SSH_COMMAND=\"ssh -i $TXSETUP_ROOT/etc/id_rsa_dkey_$repo_name.dec -p $port\" git clone \"$repo_url\" \"$clone_path\" (dry-run, -force to force)"
 		fi
 	else
-		echo "Error: $clone_path already exists"
+		echo "Warning: $clone_path already exists, skipping cloning.."
+		echo "GIT_SSH_COMMAND=\"ssh -i $TXSETUP_ROOT/etc/id_rsa_dkey_$repo_name.dec -p $port\" git clone \"$repo_url\" \"$clone_path\" (dry-run, -force to force)"
 	fi
 done <<< "$(echo "$json" | grep -o '{[^}]*}')"
 
