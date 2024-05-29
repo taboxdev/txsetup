@@ -22,7 +22,7 @@ then
     exit
 fi
 
-source etc/lsgetopt.sh
+source etc/txgetopt.sh
 
 FN=$(basename -- "$F1")
 EX="${FN##*.}"

@@ -7,7 +7,7 @@ if [ ! -d "$TXSETUP_ROOT/etc" ]; then
     exit 1
 fi
 
-source $TXSETUP_ROOT/etc/lsgetopt.sh
+source $TXSETUP_ROOT/etc/txgetopt.sh
 
 # Check if dev directory exists, if not, create it
 if [ ! -d "$HOME/dev" ]; then
