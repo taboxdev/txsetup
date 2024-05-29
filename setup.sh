@@ -69,21 +69,45 @@ while IFS= read -r line; do
         echo "Error: Missing key or value in JSON record."
         continue
     fi
-
-    # Check if forced run or dry run
-    if [ -n "${force+x}" ]; then
-        # Perform the action
-        echo "Cloning repository: $repo_name"
-        if ! GIT_SSH_COMMAND="ssh -i $TXSETUP_ROOT/etc/id_rsa_dkey_$repo_name.dec -p $port" git clone "$repo_url" "$clone_path"; then
-            echo "Error: Cloning $repo_name repository failed"
-            exit 1
-        fi
-    else
-        # Echo the command for dry run
-        echo "GIT_SSH_COMMAND=\"ssh -i $TXSETUP_ROOT/etc/id_rsa_dkey_$repo_name.dec -p $port\" git clone \"$repo_url\" \"$clone_path\" (dry-run, -force to force)"
-    fi
+	
+	if [ ! -d $clone_path ]; then
+		# Check if forced run or dry run
+		if [ -n "${force+x}" ]; then
+			# Perform the action
+			echo "Cloning repository: $repo_name"
+			if ! GIT_SSH_COMMAND="ssh -i $TXSETUP_ROOT/etc/id_rsa_dkey_$repo_name.dec -p $port" git clone "$repo_url" "$clone_path"; then
+				echo "Error: Cloning $repo_name repository failed"
+				exit 1
+			fi
+		else
+			# Echo the command for dry run
+			echo "GIT_SSH_COMMAND=\"ssh -i $TXSETUP_ROOT/etc/id_rsa_dkey_$repo_name.dec -p $port\" git clone \"$repo_url\" \"$clone_path\" (dry-run, -force to force)"
+		fi
+	else
+		echo "Error: $clone_path already exists"
+	fi
 done <<< "$(echo "$json" | grep -o '{[^}]*}')"
 
 cd "$TXSETUP_ROOT" || { echo "Error: Unable to change directory to $TXSETUP_ROOT"; exit 1; }
 
 echo "Script execution completed successfully"
+
+UNAME=$(uname)
+cd ..
+if [ ! -d lindoapi ]; then
+	if [ "${UNAME:0:6}" = "CYGWIN" -o "${UNAME:0:7}" = "MINGW64" ]; then
+		LINDO_URL=https://www.lindo.com/downloads/LAPI-WINDOWS-64x86-15.0.tar.gz
+	elif [ "${UNAME}" = "Linux" ]; then
+		LINDO_URL=https://www.lindo.com/downloads/LAPI-LINUX-64x86-15.0.tar.gz
+	elif [ "${UNAME}" = "Darwin" ]; then
+		LINDO_URL=https://www.lindo.com/downloads/LAPI-OSX-64x86-15.0.tar.gz
+	fi
+	if [ ! -z "$LINDO_URL" ]; then
+		wget "$LINDO_URL"
+		filename=${LINDO_URL##*/}
+		tar zxvf $filename
+	fi
+fi
+cd $TXSETUP_ROOT	
+		
+		
