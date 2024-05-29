@@ -2,18 +2,18 @@
 
 ## Overview
 
-TXSetup is a project designed to simplify the setup process by securely managing deploy keys and automating the repository cloning process of TABOX environment. This repository includes scripts to encrypt and decrypt deploy keys, as well as a setup script to automate the configuration.
+TXSetup is a project designed to simplify the setup process of TABOX SDK by securely managing deploy keys and automating the repository cloning process. You will need an `api_token` to decrypt encrypted deploy keys. If you are a qualified tester/developer, you should have received this token via email. See `Step 1` in [Setup Instructions](#setup-instructions) section.
 
 ## File Structure
 
 	txsetup/
 	+-- README.md
 	+-- etc/
-	¦ +-- .bottles.template
-	¦ +-- id_ed25519_dkey_fdata.enc
-	¦ +-- id_ed25519_dkey_txsetup.enc
-	¦ +-- id_rsa_dkey_txdata.enc
-	¦ +-- id_rsa_dkey_txmodels.enc
+	ï¿½ +-- .bottles.template
+	ï¿½ +-- id_ed25519_dkey_fdata.enc
+	ï¿½ +-- id_ed25519_dkey_txsetup.enc
+	ï¿½ +-- id_rsa_dkey_txdata.enc
+	ï¿½ +-- id_rsa_dkey_txmodels.enc
 	+-- txdecfile.sh
 	+-- txencfile.sh
 
