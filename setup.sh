@@ -30,7 +30,6 @@ extract_value() {
 
 files=(
     etc/id_rsa_dkey_fdata.enc
-    etc/id_rsa_dkey_fdata.enc
     etc/id_rsa_dkey_txdata.enc
     etc/id_rsa_dkey_txmodels.enc
     etc/id_rsa_dkey_tabox.enc
