@@ -9,11 +9,11 @@ TXSetup is a project designed to simplify the setup process of TABOX SDK by secu
 	txsetup/
 	+-- README.md
 	+-- etc/
-	� +-- .bottles.template
-	� +-- id_rsa_dkey_fdata.enc
-	� +-- id_rsa_dkey_txsetup.enc
-	� +-- id_rsa_dkey_txdata.enc
-	� +-- id_rsa_dkey_txmodels.enc
+	   +-- .bottles.template
+	   +-- id_rsa_dkey_fdata.enc
+	   +-- id_rsa_dkey_txsetup.enc
+	   +-- id_rsa_dkey_txdata.enc
+	   +-- id_rsa_dkey_txmodels.enc
 	+-- txdecfile.sh
 	+-- txencfile.sh
 	+-- setup.sh
