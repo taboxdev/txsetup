@@ -10,6 +10,7 @@ TXSetup is a project designed to simplify the setup process of TABOX SDK by secu
 	+-- README.md
 	+-- etc/
 	   +-- .bottles.template
+	   +-- repo_config.enc
 	   +-- id_rsa_dkey_fdata.enc
 	   +-- id_rsa_dkey_txsetup.enc
 	   +-- id_rsa_dkey_txdata.enc
@@ -19,7 +20,7 @@ TXSetup is a project designed to simplify the setup process of TABOX SDK by secu
 	+-- setup.sh
 
 
-- **etc/**: Contains encrypted deploy keys for private repositories.
+- **etc/**: Contains list of private repositories and their deploy keys (encrypted).
 - **txdecfile.sh**: Script to decrypt files.
 - **txencfile.sh**: Script to encrypt files.
 - **setup.sh**: Script to automate the setup process.
