@@ -31,12 +31,13 @@ TXSetup is a project designed to simplify the setup process of TABOX SDK by secu
 - **OpenSSL**: Required for encryption and decryption of deploy keys.
 - **Git**: For cloning repositories.
 - **SSH**: To manage SSH keys and clone repositories.
-- **LINDO API**: For optimization library (optional, require a license from [LINDO Systems, Inc](https://www.lindo.com).
 
 ### Windows
 - **Git-for-Windows** [Git-2.45.1-64-bit.exe](https://github.com/git-for-windows/git/releases/download/v2.45.1.windows.1/Git-2.45.1-64-bit.exe)
 - For other `Git-for-Windows` versions, visit [https://gitforwindows.org](https://gitforwindows.org)
 
+### Optional
+- **LINDO API**: For optimization features. This requires a license from [LINDO Systems, Inc](https://www.lindo.com).
 
 ## Setup Instructions
 
