@@ -1,5 +1,5 @@
 #!/bin/bash
-
+UNAME=$(uname)
 TXSETUP_ROOT=$(pwd)
 if [ ! -d "$TXSETUP_ROOT/etc" ]; then
     echo "Error: $TXSETUP_ROOT/etc not found."
@@ -103,11 +103,31 @@ if [ ! -d lindoapi ]; then
 		LINDO_URL=https://www.lindo.com/downloads/LAPI-OSX-64x86-15.0.tar.gz
 	fi
 	if [ ! -z "$LINDO_URL" ]; then
-		wget "$LINDO_URL"
+		curl -A "Mozilla/5.0" -O "$LINDO_URL"
 		filename=${LINDO_URL##*/}
 		tar zxvf $filename
 	fi
+else
+	echo "$(pwd)/lindoapi exists.."
 fi
-cd $TXSETUP_ROOT	
+cd $TXSETUP_ROOT
+
+# Define a unique marker to check if the aliases have already been added
+MARKER="# Added by setup.sh for tabox aliases"
+
+# Check if the marker already exists in .bashrc
+if ! grep -qF "$MARKER" ~/.bashrc; then
+    # If .bashrc exists, append the aliases with the marker
+    if [ -f ~/.bashrc ]; then
+        echo -e "\n$MARKER" >> ~/.bashrc
+        cat $HOME/dev/c/tabox/trunk/bin/txalias.sh >> ~/.bashrc
+    else
+        # If .bashrc does not exist, create it and add the aliases with the marker
+        echo "$MARKER" > ~/.bashrc
+        cat $HOME/dev/c/tabox/trunk/bin/txalias.sh >> ~/.bashrc
+    fi
+else
+    echo "Aliases already added to .bashrc"
+fi
 		
 		

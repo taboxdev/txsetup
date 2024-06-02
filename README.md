@@ -2,7 +2,7 @@
 
 ## Overview
 
-TXSetup is a project designed to simplify the setup process of TABOX SDK by securely managing deploy keys and automating the repository cloning process. You will need an `api_token` to decrypt encrypted deploy keys. If you are a qualified tester/developer, you should have received this token via email. See `Step 1` in [Setup Instructions](#setup-instructions) section.
+TXSetup is a project designed to simplify the setup process of TABOX SDK by securely managing deploy keys and automating the repository-cloning. You will need an `api_token` to decrypt the encrypted deploy keys. If you are a qualified tester/developer, you should have received this token via email. See `Step 1` in [Setup Instructions](#setup-instructions) section.
 
 ## File Structure
 
@@ -10,12 +10,13 @@ TXSetup is a project designed to simplify the setup process of TABOX SDK by secu
 	+-- README.md
 	+-- etc/
 	� +-- .bottles.template
-	� +-- id_ed25519_dkey_fdata.enc
-	� +-- id_ed25519_dkey_txsetup.enc
+	� +-- id_rsa_dkey_fdata.enc
+	� +-- id_rsa_dkey_txsetup.enc
 	� +-- id_rsa_dkey_txdata.enc
 	� +-- id_rsa_dkey_txmodels.enc
 	+-- txdecfile.sh
 	+-- txencfile.sh
+	+-- setup.sh
 
 
 - **etc/**: Contains encrypted deploy keys for private repositories.
@@ -30,6 +31,7 @@ TXSetup is a project designed to simplify the setup process of TABOX SDK by secu
 - **OpenSSL**: Required for encryption and decryption of deploy keys.
 - **Git**: For cloning repositories.
 - **SSH**: To manage SSH keys and clone repositories.
+- **LINDO API**: Fpr optimization services (optional)
 
 ### Windows
 - **Git-for-Windows** [Git-2.45.1-64-bit.exe](https://github.com/git-for-windows/git/releases/download/v2.45.1.windows.1/Git-2.45.1-64-bit.exe)
