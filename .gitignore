@@ -1,4 +1,7 @@
 #
 
 etc/.bottles
+etc/id_rsa*
 *.dec
+*.pub
+*.json

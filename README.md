@@ -42,9 +42,9 @@ TXSetup is a project designed to simplify the setup process of TABOX SDK by secu
 
 ## Setup Instructions
 
-- Step 1: Edit `etc/.bottles` and update the `api_token` entry with the token provided to you via email
+- Step 1: Edit `etc/.bottles` and update the `api_token` entry with the token provided to you via email.
 
-- Step 2: The `setup.sh` script automates set up TABOX environment on your computer.  Execute the setup script:
+- Step 2: Run the `setup.sh` script to set up TABOX SDK environment on your computer.  Execute the setup script:
 
    ```bash
    ./setup.sh
