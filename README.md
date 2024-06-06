@@ -34,7 +34,7 @@ TXSetup is a project designed to simplify the setup process of TABOX SDK by secu
 - **SSH**: To manage SSH keys and clone repositories.
 
 ### Windows
-- **Git-for-Windows** [Git-2.45.1-64-bit.exe](https://github.com/git-for-windows/git/releases/download/v2.45.1.windows.1/Git-2.45.1-64-bit.exe)
+- **Git-for-Windows** [Git-2.45.1-64-bit.exe](https://github.com/git-for-windows/git/releases/download/v2.45.1.windows.1/Git-2.45.1-64-bit.exe). This shell environment includes OpenSSL, Git and SSH.
 - For other `Git-for-Windows` versions, visit [https://gitforwindows.org](https://gitforwindows.org)
 
 ### Optional
