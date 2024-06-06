@@ -2,7 +2,7 @@
 
 ## Overview
 
-TXSetup is a project designed to simplify the setup process of TABOX SDK by securely managing deploy keys and automating the repository-cloning. You will need an `api_token` to decrypt the encrypted deploy keys. If you are a qualified tester/developer, you should have received this token via email. See `Step 1` in [Setup Instructions](#setup-instructions) section.
+TXSetup is a project designed to simplify the setup process of TABOX SDK by securely managing deploy keys and automating the repository-cloning. You will need an `api_token` to decrypt (encrypted) deploy keys. If you are a qualified tester/developer, you should have received this token via email. See `Step 1` in [Setup Instructions](#setup-instructions) section.
 
 ## File Structure
 
@@ -44,7 +44,7 @@ TXSetup is a project designed to simplify the setup process of TABOX SDK by secu
 
 - Step 1: Edit `etc/.bottles` and update the `api_token` entry with the token provided to you via email.
 
-- Step 2: Run the `setup.sh` script to set up TABOX SDK environment on your computer.  Execute the setup script:
+- Step 2: Execute the `setup.sh` script to set up TABOX SDK environment on your computer.
 
    ```bash
    ./setup.sh
