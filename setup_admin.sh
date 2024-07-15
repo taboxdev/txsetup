@@ -35,6 +35,8 @@ files=(
 for file in "${files[@]}"; do
     if ! ./txdecfile.sh "$file"; then
         echo "Error: Failed to decrypt $file"
+        echo "Make sure you updated 'api_token' in etc/.bottles .."
+        echo "Current value: $(cat etc/.bottles | grep api_token)"
         exit 1
     fi
 done
