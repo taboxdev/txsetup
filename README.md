@@ -44,7 +44,7 @@ This requires an associated configuration entry in `~/.ssh/config`.
 
 ### Linux/MacOS
 
-- **OpenSSL**: Required for encryption and decryption of deploy keys.
+- **OpenSSL-3**: Required for encryption and decryption of deploy keys.
 - **Git**: For cloning repositories.
 - **SSH**: To manage SSH keys and clone repositories.
 
