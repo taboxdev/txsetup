@@ -2,7 +2,14 @@
 
 ## Overview
 
-TXSetup is a project designed to simplify the setup process of TABOX SDK by securely managing deploy keys and automating the repository-cloning. You will need an `api_token` to decrypt (encrypted) deploy keys. If you are a qualified tester/developer, you should have received this token via email. See `Step 1` in [Setup Instructions](#setup-instructions) section. If you are an admin, make sure to setup your `~/.ssh` folder and `~/.ssh/config` file to give you access to the private repositories. It is customary for admins to make the initial clone with ` git@github.com-to-taboxdev:taboxdev/txsetup.git` command with a proper configuration entry in `~/.ssh/config`.
+TXSetup is a project designed to simplify the setup process of TABOX SDK by securely managing deploy keys and automating the repository-cloning. 
+
+If you are a qualified tester/developer, an `api_token` to decrypt (encrypted) deploy keys will be required.  You should have received this token via email. See `Step 1` in [Setup Instructions](#setup-instructions) section. 
+
+If you are an admin, make sure to setup your `~/.ssh` folder and `~/.ssh/config` file to give you access to the private repositories. You should already have your ssh keys incorporated with this repository. 
+
+## Remark
+It is customary for admins to make the initial clone with ` git@github.com-to-taboxdev:taboxdev/txsetup.git` command with a proper configuration entry in `~/.ssh/config`.
 
 ## File Structure
 
