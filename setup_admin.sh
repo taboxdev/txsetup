@@ -34,7 +34,7 @@ files=(
 
 for file in "${files[@]}"; do
 	./txdecfile.sh "$file"
-    if [ $? -eq 0 ]; then
+    if [ $? -ne 0 ]; then
         echo "Error: Failed to decrypt $file"
         exit 1
     fi
