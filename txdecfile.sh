@@ -35,10 +35,10 @@ else
 	echo Warning: etc/.bottles not found.
 	echo Creating it from .bottles.template
 	if [ -f etc/.bottles.template ]; then
-		cp -puv etc/.bottles.template etc/.bottles
+		cp -pv etc/.bottles.template etc/.bottles
 		BOTTLES=etc/.bottles
 	elif [ -f ./.bottles.template ]; then
-		cp -puv ./.bottles.template ./.bottles
+		cp -pv ./.bottles.template ./.bottles
 		BOTTLES=./.bottles
 	else
 		echo Error: .bottles.template not found. Your repo might be corrupt.

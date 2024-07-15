@@ -125,5 +125,4 @@ if ! grep -qF "$MARKER" ~/.bashrc; then
 else
     echo "Aliases already added to .bashrc"
 fi
-		
-		
+
