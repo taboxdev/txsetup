@@ -64,18 +64,23 @@ else
 fi
 if [ "$EX" = "enc" ]; then
 	echo "REMARK: Using passwds stored in .bottles"
-	# Function to compare versions
-	version_ge() {
-		# Compare version numbers using printf and sort -V
-		printf '%s\n%s\n' "$1" "$2" | sort -V -C
+	# Function to convert a version string to a comparable integer
+	version_to_int() {
+		local version=$1
+		# Remove dots and pad with zeros to ensure proper numeric comparison
+		echo "$version" | awk -F. '{ printf("%d%02d%02d\n", $1,$2,$3); }'
 	}
 
 	# Get the active OpenSSL version
 	OPENSSL_VERSION=$(openssl version | awk '{print $2}')
 
-	# Enforce OpenSSL version 3 or higher
+	# Convert versions to comparable integers
+	OPENSSL_VERSION_INT=$(version_to_int "$OPENSSL_VERSION")
 	REQUIRED_VERSION="3.0.0"
-	if version_ge "$OPENSSL_VERSION" "$REQUIRED_VERSION"; then
+	REQUIRED_VERSION_INT=$(version_to_int "$REQUIRED_VERSION")
+
+	# Enforce OpenSSL version 3 or higher
+	if [[ $OPENSSL_VERSION_INT -ge $REQUIRED_VERSION_INT ]]; then
 		echo "OpenSSL version is $OPENSSL_VERSION, which meets the requirement of $REQUIRED_VERSION or higher."
 	else
 		echo "Error: OpenSSL version $OPENSSL_VERSION is lower than the required version $REQUIRED_VERSION." >&2
