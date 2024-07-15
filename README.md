@@ -11,7 +11,13 @@ If you are an admin, make sure to setup your `~/.ssh` folder and `~/.ssh/config`
 See `Step 1` in [Setup Instructions](#setup-instructions) section on `api_token`. 
 
 ## Remark
-It is customary for admins to make the initial clone with `git clone git@github.com-to-taboxdev:taboxdev/txsetup.git`. This requires an associated configuration entry in `~/.ssh/config`.
+It is customary for admins to make the initial clone with 
+
+```bash
+git clone git@github.com-to-taboxdev:taboxdev/txsetup.git
+```
+
+This requires an associated configuration entry in `~/.ssh/config`.
 
 ## File Structure
 
