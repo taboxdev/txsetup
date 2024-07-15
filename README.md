@@ -53,13 +53,15 @@ It is customary for admins to make the initial clone with ` git@github.com-to-ta
 
 - Step 1: Edit `etc/.bottles` and update the `api_token` entry with the token provided to you via email or the password database.
 
-- Step 2: 
-	For testers/developers: Execute the `setup.sh` script to set up TABOX SDK environment on your computer.
+- Step 2: Execute the setup` script to set up TABOX SDK environment on your computer.
+	
+	Testers/Developers:
 
    ```bash
    ./setup.sh
    ```
-	For admins: Execute the `admin_setup.sh` script to set up TABOX SDK environment on your computer.
+   
+	Admins:
 
    ```bash
    ./admin_setup.sh
