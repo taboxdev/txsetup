@@ -6,7 +6,7 @@ TXSetup is a project designed to simplify the setup process of TABOX SDK by secu
 
 If you are a qualified tester/developer, an `api_token` to decrypt (encrypted) deploy keys will be required.  You should have received this token via email. 
 
-If you are an admin, you do not need deploy keys. It is assumed you have collaboration rights on the private repositories. Just make sure to setup your `~/.ssh` folder and `~/.ssh/config` file to give you access to the private repositories. You still need the `api_token` from the master database to access the list of private repos.
+If you are an admin, you do not need deploy keys. It is assumed you have collaboration rights on the private repositories. Just make sure to setup your `~/.ssh` folder and `~/.ssh/config` file to give you access to them. Note, however, you still need the `api_token` from the master database to access the list of private repos.
 
 See `Step 1` in [Setup Instructions](#setup-instructions) section on `api_token`. 
 
