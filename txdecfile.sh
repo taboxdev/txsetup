@@ -69,6 +69,9 @@ if [ "$EX" = "enc" ]; then
 		echo Written $FP.dec
 	else
 		echo Error: dec operation failed.
+		echo "Make sure you updated 'api_token' in etc/.bottles .."
+		echo "Current value: $(cat etc/.bottles | grep api_token)"	
+        exit 1	
 	fi	
 else
 	echo Error: extension \'.enc\' was expected, found \'.$EX\'

@@ -71,5 +71,7 @@ if [ $? -eq 0 ]; then
 	echo Written $FP.enc
 else
 	echo Error: enc operation failed.
+	echo "Make sure you updated 'api_token' in etc/.bottles .."
+	echo "Current value: $(cat etc/.bottles | grep api_token)"		
 fi
 
