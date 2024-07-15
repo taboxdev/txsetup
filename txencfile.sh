@@ -66,6 +66,24 @@ else
 	echo Encrypting with api_token
 fi
 echo "REMARK: Using passwds stored in .bottles"
+# Function to compare versions
+version_ge() { 
+    # sort -V sorts versions, and we return true if the first argument is sorted as >= the second argument
+    printf '%s\n%s\n' "$1" "$2" | sort -V -C
+}
+
+# Get the active OpenSSL version
+OPENSSL_VERSION=$(openssl version | awk '{print $2}')
+
+# Enforce OpenSSL version 3 or higher
+REQUIRED_VERSION="3.0.0"
+if version_ge "$OPENSSL_VERSION" "$REQUIRED_VERSION"; then
+    echo "OpenSSL version is $OPENSSL_VERSION, which meets the requirement of $REQUIRED_VERSION or higher."
+else
+    echo "Error: OpenSSL version $OPENSSL_VERSION is lower than the required version $REQUIRED_VERSION." >&2
+    exit 1
+fi
+
 openssl aes-256-cbc -a -salt -in $F1 -out $FP.enc $PASS -pbkdf2
 if [ $? -eq 0 ]; then
 	echo Written $FP.enc
