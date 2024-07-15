@@ -9,7 +9,7 @@ If you are a qualified tester/developer, an `api_token` to decrypt (encrypted) d
 If you are an admin, make sure to setup your `~/.ssh` folder and `~/.ssh/config` file to give you access to the private repositories. You should already have your ssh keys incorporated with this repository. 
 
 ## Remark
-It is customary for admins to make the initial clone with ` git@github.com-to-taboxdev:taboxdev/txsetup.git` command with a proper configuration entry in `~/.ssh/config`.
+It is customary for admins to make the initial clone with ` git@github.com-to-taboxdev:taboxdev/txsetup.git` command with an associated configuration entry in `~/.ssh/config`.
 
 ## File Structure
 
