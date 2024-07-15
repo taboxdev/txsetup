@@ -65,8 +65,8 @@ fi
 if [ "$EX" = "enc" ]; then
 	echo "REMARK: Using passwds stored in .bottles"
 	# Function to compare versions
-	version_ge() { 
-		# sort -V sorts versions, and we return true if the first argument is sorted as >= the second argument
+	version_ge() {
+		# Compare version numbers using printf and sort -V
 		printf '%s\n%s\n' "$1" "$2" | sort -V -C
 	}
 
@@ -80,7 +80,7 @@ if [ "$EX" = "enc" ]; then
 	else
 		echo "Error: OpenSSL version $OPENSSL_VERSION is lower than the required version $REQUIRED_VERSION." >&2
 		exit 1
-	fi	
+	fi
 	openssl aes-256-cbc -d -a -in $F1 -out $FP.dec $PASS -pbkdf2
 	if [ $? -eq 0 ]; then
 		echo Written $FP.dec

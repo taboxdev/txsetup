@@ -67,8 +67,8 @@ else
 fi
 echo "REMARK: Using passwds stored in .bottles"
 # Function to compare versions
-version_ge() { 
-    # sort -V sorts versions, and we return true if the first argument is sorted as >= the second argument
+version_ge() {
+    # Compare version numbers using printf and sort -V
     printf '%s\n%s\n' "$1" "$2" | sort -V -C
 }
 
